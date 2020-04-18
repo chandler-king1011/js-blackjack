@@ -1,0 +1,112 @@
+body {
+    background-color: rgb(16, 77, 16);
+    margin: 0px;
+}
+
+.blackjack__title-message {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+.blackjack__message {
+    color: rgb(245, 243, 243);
+}
+
+
+
+.blackjack > .blackjack__board {
+    width: 100vw;
+    height: 55vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    margin-bottom: 5px;
+}
+
+.blackjack > .blackjack__board h2 {
+    color: rgb(245, 243, 243);
+    text-align: center;
+}
+
+.blackjack > .blackjack__board > .blackjack__user-board {
+    width: 100%;
+    border-right: 2px solid black;
+}
+
+.blackjack > .blackjack__board > .blackjack__bot-board {
+    width: 100%;
+}
+
+
+.blackjack > .blackjack-control-scores {
+    height: 24vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-content: center;
+    border-top: 2px solid black;
+}
+
+.blackjack > .blackjack-control-scores > .blackjack__controls {
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 50%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.blackjack > .blackjack-control-scores > .blackjack__controls button {
+    width: 72px;
+    height: 36px;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    color: black;
+    font-weight: 600;
+    transition: 0.2s ease-in-out;
+}
+
+.blackjack > .blackjack-control-scores > .blackjack__controls > button:hover{
+    box-shadow: 2px 2px 15px 0px rgba(0,0,0,1);
+}
+
+.blackjack > .blackjack-control-scores > .blackjack__controls button:focus {
+    outline: none;
+}
+
+.blackjack > .blackjack-control-scores > .blackjack__controls > .button__hit {
+    background-color: rgb(44, 92, 248);
+}
+
+
+.blackjack > .blackjack-control-scores > .blackjack__controls > .button__stand{
+    background-color: rgb(243, 231, 65);
+}
+
+.blackjack > .blackjack-control-scores > .blackjack__controls > .button__deal {
+    background-color: rgb(172, 20, 20);
+}
+
+.blackjack-control-scores > .blackjack__scores {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.blackjack-control-scores > .blackjack__scores > table {
+    width: 35%;
+    height: 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+table > tbody > td {
+    text-align: center;
+}
+
