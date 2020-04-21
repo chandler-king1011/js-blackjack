@@ -28,17 +28,30 @@ body {
     margin-bottom: 5px;
 }
 
+.blackjack > .blackjack__board > .blackjack__board-section > .card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+
+.blackjack > .blackjack__board img {
+    width: 150px;
+    height: 200px;
+}
+
 .blackjack > .blackjack__board h2 {
     color: rgb(245, 243, 243);
     text-align: center;
 }
 
-.blackjack > .blackjack__board > .blackjack__user-board {
+.blackjack > .blackjack__board > #user-board {
     width: 100%;
     border-right: 2px solid black;
 }
 
-.blackjack > .blackjack__board > .blackjack__bot-board {
+
+.blackjack > .blackjack__board > #bot-board {
     width: 100%;
 }
 
@@ -100,13 +113,13 @@ body {
     justify-content: center;
 }
 .blackjack-control-scores > .blackjack__scores > table {
-    width: 35%;
+    width: 50%;
     height: 100%;
     border: 2px solid black;
     border-radius: 5px;
 }
 
-table > tbody > td {
+table > tbody > tr > td {
     text-align: center;
 }
 

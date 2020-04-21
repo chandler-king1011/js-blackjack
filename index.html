@@ -12,11 +12,13 @@
             <div class="blackjack__message">Let's Play</div>
         </div>
         <div class="blackjack__board">
-            <div class="blackjack__user-board">
-                <h2 class="blackjack__user-title">You: <span class="user-score">0</span></h2>
+            <div class="blackjack__board-section" id="user-board">
+                <h2 class="blackjack__user-title">You: <span id="user-score">0</span></h2>
+                <div class="card-container" id="user-cards"></div>
             </div>
-            <div class="blackjack__bot-board">
-                <h2 class="blackjack__bot-title">Dealer: <span class="bot-score">0</span></h2>
+            <div class="blackjack__board-section" id="bot-board">
+                <h2 class="blackjack__bot-title">Dealer: <span id="bot-score">0</span></h2>
+                <div class="card-container" id="bot-cards"></div>
             </div>
         </div>
         <div class="blackjack-control-scores">
@@ -27,16 +29,16 @@
 
             </div>
             <div class="blackjack__scores">
-                <table border="1">
+                <table>
                     <tr>
                         <th>Wins</th>
                         <th>Losses</th>
                         <th>Draws</th>
                     </tr>
                     <tr>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        <td><span id="user-wins">0</span></td>
+                        <td><span id="user-losses">0</span></td>
+                        <td><span id="user-draws">0</span></td>
                     </tr>
                 </table>
             </div>
