@@ -3,11 +3,17 @@ const botScoreEl = document.querySelector("#bot-score");
 const userCardContainer = document.querySelector("#user-cards");
 const botCardContainer = document.querySelector("#bot-cards");
 
-
 let userScore = 0;
 let botScore = 0;
+let userWins = 0;
+let userLosses = 0;
+let draws = 0;
 let botPlaying = false;
 const cardChoices = [2, 3, 4, 5, 6, 7, 8, 9, 10, "A", "J", "K", "Q"];
+
+const winSound = new Audio("./assets/sounds/cash.mp3");
+const lossSound = new Audio("./assets/sounds/aww.mp3");
+const dealSound = new Audio("./assets/sounds/swish.m4a");
 
 
 const randomNumSelection = (max) => {
@@ -15,6 +21,7 @@ const randomNumSelection = (max) => {
 } 
 
 const displayCard = (cardNum, user) => {
+    dealSound.play();
     let imgEl = `<img src="./assets/images/${cardNum}.png" />` 
     if (user == "User") {
         userCardContainer.insertAdjacentHTML('afterbegin', imgEl);
@@ -45,6 +52,10 @@ const addBotScore = (card) => {
         setTimeout(handleBotHit, 1000);
     } else if (botScore > userScore) {
         handleBotWin();
+    } else if (botScore == userScore && botScore <= 17) {
+        setTimeout(handleBotHit, 1000);
+    } else if (botScore == userScore && botScore > 17) {
+        handleDraw();
     }
     else {
         botPlaying = false;
@@ -76,7 +87,7 @@ const handleHit = () => {
     if (userScore > 21) {
         document.querySelector(".blackjack__message").innerText = "You already busted! Click stand to continue.";
     } else if (botPlaying == true) {
-        document.querySelector(".blackjack__message").innerText = "You already stood. You must wait for your opponent to complete their game.";
+        document.querySelector(".blackjack__message").innerText = "You already stood. Press deal to reset game.";
     }else {
         let card = randomNumSelection(12);
         addUserScore(cardChoices[card]);
@@ -85,16 +96,22 @@ const handleHit = () => {
 }
 
 const handleBotHit = () => {
-    if (botPlaying == true) {
-        let card = randomNumSelection(12);
-        addBotScore(cardChoices[card]);
-        displayCard(cardChoices[card], "Bot");
-    } else { return }
+    if (userScore > 21) {
+        document.querySelector(".blackjack__message").innerText = "You already busted you must click deal to reset the game.";
+    } else {
+        if (botPlaying == true) {
+            let card = randomNumSelection(12);
+            addBotScore(cardChoices[card]);
+            displayCard(cardChoices[card], "Bot");
+        }  else { return }
+    } 
 }
 
 const handleStand = () => {
-    botPlaying = true;
-    handleBotHit();
+    if (botPlaying == false) {
+        botPlaying = true;
+        handleBotHit();
+    }
 }
 
 const handleDeal = () => {
@@ -104,17 +121,34 @@ const handleDeal = () => {
     botScoreEl.innerText = botScore;
     userCardContainer.innerHTML = "";
     botCardContainer.innerHTML = "";
+    botPlaying = false;
     document.querySelector(".blackjack__message").innerText = "Let's play";
 }
 
 const handleBotWin = () => {
-    console.log("bot wins");
+    lossSound.play();
+    userLosses += 1;
+    document.querySelector("#user-losses").innerText = userLosses;
+    document.querySelector(".blackjack__message").innerText = "Your opponent won. Press deal to play again!";
+}
+
+const handleUserWin = () => {
+    winSound.play();
+    userWins += 1;
+    document.querySelector("#user-wins").innerText = userWins;
+}
+
+const handleDraw = () => {
+    draws += 1;
+    document.querySelector("#user-draws").innerText = draws;
 }
 
 const handleUserBust = () => {
-    document.querySelector(".blackjack__message").innerText = "You busted!";
+    document.querySelector(".blackjack__message").innerText = "You busted! Your opponent won.";
+    handleBotWin();
 }
 
 const handleBotBust = () => {
-    document.querySelector(".blackjack__message").innerText = "Your opponent busted!";
+    document.querySelector(".blackjack__message").innerText = "Your opponent busted! You win.";
+    handleUserWin();
 }

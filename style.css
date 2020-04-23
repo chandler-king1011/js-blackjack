@@ -38,6 +38,7 @@ body {
 .blackjack > .blackjack__board img {
     width: 150px;
     height: 200px;
+    margin: 10px;
 }
 
 .blackjack > .blackjack__board h2 {
